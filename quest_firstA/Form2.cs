@@ -36,7 +36,7 @@ namespace quest_firstA
         {
             hp_b -= 10;
             progressBar1.PerformStep();
-            if(hp_b==0)
+            if(hp_b<=0)
             {
                // st.Stop();
                double te = st.Elapsed.TotalMilliseconds;
@@ -59,6 +59,31 @@ namespace quest_firstA
             using (StreamWriter sw = new StreamWriter(@"C:\Users\bidzi\source\repos\quest_firstA\quest_firstA\res_of_b.txt"))
             {
                 sw.WriteLine(win.ToString());
+            }
+        }
+
+        private void progressBar1_Click(object sender, EventArgs e)
+        {
+            hp_b -= 100;
+            progressBar1.Step = 100;
+
+            progressBar1.PerformStep();
+            if (hp_b <= 0)
+            {
+                // st.Stop();
+                double te = st.Elapsed.TotalMilliseconds;
+                if (te > time * 1000)
+                {
+                    MessageBox.Show("YOU LOST(", "battle");
+                    t = true;
+                    RES(false);
+                }
+                if (!t)
+                {
+                    MessageBox.Show("YOU WON!", "battle");
+                    RES(true);
+                }
+                this.Close();
             }
         }
     }

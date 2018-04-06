@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.hit_b = new System.Windows.Forms.Button();
             this.description2 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
@@ -60,6 +61,7 @@
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(396, 30);
             this.progressBar1.TabIndex = 2;
+            this.progressBar1.Click += new System.EventHandler(this.progressBar1_Click);
             // 
             // Form2
             // 
@@ -69,8 +71,9 @@
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.description2);
             this.Controls.Add(this.hit_b);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form2";
-            this.Text = "Form2";
+            this.Text = "BATTLE";
             this.ResumeLayout(false);
             this.PerformLayout();
 
