@@ -329,7 +329,7 @@ namespace quest_firstA
         }
         bool CheckRes()
         {
-            using (StreamReader sr = new StreamReader(@"C:\Users\bidzi\source\repos\quest_firstA\quest_firstA\res_of_b.txt"))
+            using (StreamReader sr = new StreamReader(@"D:\\res_of_b.txt"))
             {
                 //while (sr.ReadLine() == null)
                   //  continue;

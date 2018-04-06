@@ -56,7 +56,9 @@ namespace quest_firstA
         }
         void RES(bool win)
         {
-            using (StreamWriter sw = new StreamWriter(@"C:\Users\bidzi\source\repos\quest_firstA\quest_firstA\res_of_b.txt"))
+            if (File.Exists(@"D:\\res_of_b.txt"))
+                File.CreateText(@"D:\\res_of_b.txt");
+            using (StreamWriter sw = new StreamWriter(@"D:\\res_of_b.txt"))
             {
                 sw.WriteLine(win.ToString());
             }
