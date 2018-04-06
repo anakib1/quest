@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
-
+using System.IO;
 namespace quest_firstA
 {
     
@@ -85,7 +85,7 @@ namespace quest_firstA
                 firstAN = 1;
                 description.Text = @GetAnswer(1);
 
-                SetActions(ToArrayFromS("by train;by metro;peshkom nahui;na taxi"), ToArrayFromS("you entered the train. But there were KUBIK!;you got to the school! Where will u go?;ok, ti poshel.... no tut na tebia napali chechenci;ok, eto budet stiot 100mmc"));
+                SetActions(ToArrayFromS("by train;by metro;peshkom nahui;na taxi"), ToArrayFromS("you entered the train. But there were KUBIK!;you got to the school! Where will u go?;ok, ti poshel.... no tut na tebia napali chechenci. THe battle begin!;ok, eto budet stiot 100mmc"));
                 return;
             }
             if (firstAN == 1)
@@ -112,17 +112,22 @@ namespace quest_firstA
 
                 return;
             }
+            
+            if (firstAN == 1 && answers[1] == 2 && answers[2] == 2)
+            {
+                Battle(description.Text,1000,20);
+                return;
+            }
+            if (answers[1] == 2&&firstAN==1)
+            {
+                SetActions(ToArrayFromS("tu zalupa;to math; to kokosha; nah "), ToArrayFromS("the battle begins;ok. Answer this questions;TI CHTO PROGULIAL SREDU???(battle begins);you got to zhytomir"));
+                return;
+            }
             if (firstAN == 2)
             {
 
 
                 SetActions(ToArrayFromS("go to school;play games?;die;go to mathbattle"), ToArrayFromS("You got up, and went to school, how will we get there?;ok,which game?;you are dead;how will we get there?"));
-                firstAN = -1;
-                    return;
-            }
-            if (answers[1] == 2&&firstAN==1)
-            {
-                SetActions(ToArrayFromS("tu zalupa;to math; to kokosha; nah "), ToArrayFromS("the battle begins;ok. Answer this questions;TI CHTO PROGULIAL SREDU???(battle begins);you got to zhytomir"));
                 return;
             }
 
@@ -130,13 +135,17 @@ namespace quest_firstA
 
         private void thirdA_Click(object sender, EventArgs e)
         {
-            
+            description.Text = @GetAnswer(3);
+
             if (number_of_answer == 0)
             {
                 description.Text = @GetAnswer(3);
                 MessageBox.Show("YOU ARE DEAD","quest");
-                Thread.Sleep(1000);
                 End();
+            }
+            if(firstAN==1&&answers[1]==3)
+            {
+                Battle(description.Text, 200,15);
             }
         }
 
@@ -165,7 +174,26 @@ namespace quest_firstA
         }
         void End()
         {
+            Thread.Sleep(1000);
+
             Application.Exit();
+        }
+        bool Battle(string des,int hp,int time)
+        {
+            Thread.Sleep(1000);
+
+            Form2 form2 = new Form2(des,hp,time);
+            form2.ShowDialog();
+            using (StreamReader sr = new StreamReader(@"C:\Users\bidzi\source\repos\quest_firstA\quest_firstA\res_of_b.txt"))
+            {
+                if(sr.ReadLine()!=null)
+                {
+                    if (sr.ReadLine() == "true")
+                        return true;
+                    else
+                        return false;
+                }
+            }
         }
     }
     public class Quest

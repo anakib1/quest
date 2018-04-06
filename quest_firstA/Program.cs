@@ -21,7 +21,7 @@ namespace quest_firstA
             Form1 form1 = new Form1();
             Application.Run(form1);
             //Thread.Sleep(1000);
-            form1.SetActions(form1.ToArrayFromS("g;h;j;k"), form1.ToArrayFromS("g;h;j;k"));
+            
         }
     }
 }
